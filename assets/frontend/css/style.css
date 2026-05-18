@@ -1,0 +1,196 @@
+@font-face {
+    font-family: 'Futura PT Bold';
+    src: url('../fonts/futura-pt/FuturaPTBold.otf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Futura PT Bold Oblique';
+    src: url('../fonts/futura-pt/FuturaPTBoldOblique.otf') format('truetype');
+    font-weight: bold;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Futura PT Book';
+    src: url('../fonts/futura-pt/FuturaPTBook.otf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Book Oblique';
+    src: url('../fonts/futura-pt/FuturaPTBookOblique.otf') format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond Bold';
+    src: url('../fonts/futura-pt/FuturaPTCondensedBold.otf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond Bold Oblique';
+    src: url('../fonts/futura-pt/FuturaPTCondensedBoldOblique.otf') format('truetype');
+    font-weight: bold;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond Book';
+    src: url('../fonts/futura-pt/FuturaPTCondensedBook.otf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond Book Oblique';
+    src: url('../fonts/futura-pt/FuturaPTCondensedBookOblique.otf') format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond ExtraBold';
+    src: url('../fonts/futura-pt/FuturaPTCondensedExtraBold.otf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond ExtraBold Oblique';
+    src: url('../fonts/futura-pt/FuturaPTCondensedExtraBoldOblique.otf') format('truetype');
+    font-weight: bold;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond Medium';
+    src: url('../fonts/futura-pt/FuturaPTCondensedMedium.otf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Cond Medium Oblique';
+    src: url('../fonts/futura-pt/FuturaPTCondensedMediumOblique.otf') format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Futura PT Demi';
+    src: url('../fonts/futura-pt/FuturaPTDemi.otf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Futura PT Demi Oblique';
+    src: url('../fonts/futura-pt/FuturaPTDemiOblique.otf') format('truetype');
+    font-weight: bold;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Futura PT ExtraBold';
+    src: url('../fonts/futura-pt/FuturaPTExtraBold.otf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Futura PT ExtraBold Oblique';
+    src: url('../fonts/futura-pt/FuturaPTExtraBoldOblique.otf') format('true');
+    font-weight: bold;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Futura PT Heavy';
+    src: url('../fonts/futura-pt/FuturaPTHeavy.otf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Futura PT Heavy Oblique';
+    src: url('../fonts/futura-pt/FuturaPTHeavyOblique.otf') format('truetype');
+    font-weight: bold;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Futura PT Light';
+    src: url('../fonts/futura-pt/FuturaPTLight.otf') format('truetype');
+    font-weight: lighter;
+}
+
+@font-face {
+    font-family: 'Futura PT Light Oblique';
+    src: url('../fonts/futura-pt/FuturaPTLightOblique.otf') format('truetype');
+    font-weight: lighter;
+    font-style: oblique;
+}
+
+@font-face {
+    font-family: 'Futura PT Medium';
+    src: url('../fonts/futura-pt/FuturaPTMedium.otf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Futura PT Medium Oblique';
+    src: url('../fonts/futura-pt/FuturaPTMediumOblique.otf') format('truetype');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+body {
+    font-family: 'Futura PT Book', sans-serif;
+}
+
+.nav-link.active {
+    font-family: 'Futura PT Bold', sans-serif;
+}
+
+#works img {
+    width: 100%;
+    object-fit: cover;
+}
+
+#works .hover-zoom {
+    overflow: hidden;
+}
+
+#works .hover-zoom img {
+    transition: transform .5s ease;
+}
+
+#works .hover-zoom:hover img {
+    transform: scale(1.25);
+}
+
+#about ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#about h2 {
+    font-family: 'Futura PT Medium', sans-serif;
+}
+
+#contact h2, h6, .text-bold {
+    font-family: 'Futura PT Medium', sans-serif;
+}
+
+#contact button, #contact input, #contact textarea  {
+    border-radius: 0;
+}
+
+@media only screen and (max-width: 600px) {
+    #works img {
+        height: 150px;
+    }
+
+    #works .hover-zoom {
+        height: 150px;
+        overflow: hidden;
+    }
+}

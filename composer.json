@@ -1,0 +1,27 @@
+{
+	"name": "gunalirezqimauludi/muledraws",
+	"description": "Muledraws web application",
+	"type": "project",
+	"license": "MIT",
+	"homepage": "https://github.com/gunalirezqimauludi/muledraws",
+	"authors": [
+		{
+			"name": "Gunalirezqi",
+			"homepage": "https://github.com/gunalirezqimauludi"
+		}
+	],
+	"support": {
+		"source": "https://github.com/gunalirezqimauludi/muledraws"
+	},
+	"require": {
+		"php": ">=7.4",
+		"pocketarc/codeigniter": "^3.4"
+	},
+	"require-dev": {
+		"mikey179/vfsstream": "^1.1",
+		"phpunit/phpunit": "^9.6"
+	},
+	"suggest": {
+		"paragonie/random_compat": "Provides better randomness in PHP 5.x"
+	}
+}
