@@ -16,7 +16,7 @@ function envHelper(): array
 		'appName' => $businessProfile->name ?? 'Muledraws',
 		'profileAddress' => $businessProfile->address,
 		'userName' => $CI->session->userdata('userName'),
-		'userInitial' => substr($CI->session->userdata('userName'), 0, 1),
+		'userInitial' => substr($CI->session->userdata('userName') ?? '', 0, 1),
 	];
 
 	return $data;

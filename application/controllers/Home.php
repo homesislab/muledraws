@@ -26,6 +26,7 @@ class Home extends CI_Controller
 		$data['listCarousel'] = $this->carouselModel->getCarousel();
 		$data['listWork'] = $this->workModel->getWork();
 		$data['listSocmed'] = $this->profileBusinessModel->getListSocmed();
+		$data['profileBusiness'] = $this->profileBusinessModel->getProfileBusiness();
 
 		$this->load->view('pages/Frontend/Home', $data);
 	}

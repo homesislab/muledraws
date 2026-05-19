@@ -24,6 +24,7 @@ class ProfileBusinessModel extends CI_Model
 		$this->email = $_POST['email'];
 		$this->phone = $_POST['phone'];
 		$this->address = $_POST['address'];
+		$this->bio = $_POST['bio'];
 
 		if ($this->upload()) {
 			if ($this->db->update('setting_profile_business', $this, ['id' => $_POST['id']])) {

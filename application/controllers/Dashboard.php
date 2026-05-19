@@ -18,8 +18,11 @@ class Dashboard extends CI_Controller
 			['Dashboard', '#'],
 		];
 
-		// CallModel
-		$this->load->model('DashboardModel', 'model');
+		// CallModels
+		$this->load->model('Master/WorkModel', 'workModel');
+		$this->load->model('Master/CarouselModel', 'carouselModel');
+		$this->load->model('Master/ClientModel', 'clientModel');
+		$this->load->model('Master/AwwardModel', 'awwardModel');
 	}
 
 	public function index()
@@ -27,6 +30,17 @@ class Dashboard extends CI_Controller
 		$data = [];
 		$data['title'] = 'Dashboard';
 		$data['breadcrumbs'] = $this->breadcrumbs;
+
+		// Fetch stats
+		$data['totalWorks'] = count($this->workModel->getWork());
+		$data['totalCarousels'] = count($this->carouselModel->getCarousel());
+		$data['totalClients'] = count($this->clientModel->getClient());
+		$data['totalAwards'] = count($this->awwardModel->getAwward());
+
+		// Fetch latest works (last 4)
+		$this->db->order_by('id', 'DESC');
+		$this->db->limit(4);
+		$data['latestWorks'] = $this->workModel->getWork();
 
 		viewRender('index', $data);
 	}

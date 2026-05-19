@@ -21,6 +21,7 @@ CREATE TABLE `setting_profile_business` (
   `phone` varchar(64) DEFAULT NULL,
   `address` text DEFAULT NULL,
   `logo` varchar(255) DEFAULT NULL,
+  `bio` text DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -171,18 +172,45 @@ INSERT INTO `master_features` (`name`, `status`) VALUES
   ('Beelerose', 1),
   ('Fonts In Use', 1);
 
-INSERT INTO `master_works` (`name`, `description`, `image`, `status`) VALUES
-  ('Work 01', NULL, '01hero.jpg', 1),
-  ('Work 02', NULL, '02hero.jpg', 1),
-  ('Work 03', NULL, '03hero.jpg', 1),
-  ('Work 04', NULL, '04hero.jpg', 1),
-  ('Work 05', NULL, '05hero.jpg', 1),
-  ('Work 06', NULL, '06hero.jpg', 1),
-  ('Work 07', NULL, '07hero.jpg', 1),
-  ('Work 08', NULL, '08hero.jpg', 1),
-  ('Work 09', NULL, '09hero.jpg', 1),
-  ('Work 10', NULL, '10hero.jpg', 1),
-  ('Work 11', NULL, '11hero.jpg', 1),
-  ('Work 12', NULL, '12hero.jpg', 1);
+INSERT INTO `master_works` (`id`, `name`, `description`, `image`, `status`) VALUES
+  (1, 'Work 01', 'Creative direction, illustration, and branding system for a global publishing house.', '01hero.jpg', 1),
+  (2, 'Work 02', 'Contemporary visual design and bespoke packaging system designed for premium coffee brand.', '02hero.jpg', 1),
+  (3, 'Work 03', 'Editorial cover design and custom typography for a leading European design magazine.', '03hero.jpg', 1),
+  (4, 'Work 04', 'Branding and identity design for a contemporary contemporary art exhibition.', '04hero.jpg', 1),
+  (5, 'Work 05', 'Promotional illustration and layout design for live contemporary music tour.', '05hero.jpg', 1),
+  (6, 'Work 06', 'Minimalist poster art and conceptual illustration series celebrating modernist architecture.', '06hero.jpg', 1),
+  (7, 'Work 07', 'Packaging design, typographic layout and photography art direction for craft brewery.', '07hero.jpg', 1),
+  (8, 'Work 08', 'Visual storytelling and editorial illustrations for a special feature about modern technology.', '08hero.jpg', 1),
+  (9, 'Work 09', 'Bespoke illustrations and UI design system for a creative art agency.', '09hero.jpg', 1),
+  (10, 'Work 10', 'Brand design and custom geometric patterns for an indie apparel brand.', '10hero.jpg', 1),
+  (11, 'Work 11', 'Limited edition silk screen posters and identity for a local independent film festival.', '11hero.jpg', 1),
+  (12, 'Work 12', 'Typography guidelines, identity design and logo assets for a tech startup.', '12hero.jpg', 1);
+
+INSERT INTO `master_works_detail` (`artwork_id`, `name`, `image`, `status`) VALUES
+  (1, 'Hero Showcase', '01hero.jpg', 1),
+  (1, 'Typography Details', '02hero.jpg', 1),
+  (2, 'Bottle Packaging Showcase', '02hero.jpg', 1),
+  (2, 'Logo Application Detail', '03hero.jpg', 1),
+  (2, 'Box Packaging Concept', '04hero.jpg', 1),
+  (3, 'Magazine Cover Close-up', '03hero.jpg', 1),
+  (3, 'Grid Layout Specs', '04hero.jpg', 1),
+  (4, 'Exhibition Room Mockup', '04hero.jpg', 1),
+  (4, 'Banner Close-up', '05hero.jpg', 1),
+  (5, 'Band Merch Close-up', '05hero.jpg', 1),
+  (5, 'Vector Line Art Details', '06hero.jpg', 1),
+  (6, 'Poster Print Details', '06hero.jpg', 1),
+  (6, 'Color Palette Swatches', '07hero.jpg', 1),
+  (7, 'Label Design Close-up', '07hero.jpg', 1),
+  (7, 'Glass Print Details', '08hero.jpg', 1),
+  (8, 'Digital Illustration Zoom', '08hero.jpg', 1),
+  (8, 'Sketch Stage', '09hero.jpg', 1),
+  (9, 'Interface Mockup Details', '09hero.jpg', 1),
+  (9, 'Icon Set Design', '10hero.jpg', 1),
+  (10, 'Fabric Print Pattern Zoom', '10hero.jpg', 1),
+  (10, 'Tag Design Specs', '11hero.jpg', 1),
+  (11, 'Screen Print Texture Close-up', '11hero.jpg', 1),
+  (11, 'Lobby Poster Placement', '12hero.jpg', 1),
+  (12, 'Brand Assets Overview', '12hero.jpg', 1),
+  (12, 'Alternative Logo Versions', '01hero.jpg', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
