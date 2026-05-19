@@ -43,6 +43,9 @@ jQuery(document).ready(function() {
         template: function(row) {
             return actionRow(row.id, row.status);
         },
+    }, {
+        field: 'name',
+        visible: false
     }];
 
     KTDatatableJsonRemote.init(columns);

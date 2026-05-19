@@ -1,0 +1,50 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: mysqli, pdo, pdo_mysql, gd
+        tools: composer:v2
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict || echo "Validation failed, but continuing..."
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Check PHP Syntax
+      run: find . -name "*.php" ! -path "./vendor/*" -print0 | xargs -0 -n1 php -l
+
+    # If you write tests later, you can uncomment this step to run PHPUnit
+    # - name: Run tests with PHPUnit
+    #   run: vendor/bin/phpunit
+
+  # Example deployment job (CD)
+  deploy:
+    needs: build-and-test
+    runs-on: self-hosted
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    
+    steps:
+    - name: Deploy Locally
+      run: |
+        cd /home/gie/workspace/muledraws
+        git fetch origin main
+        git reset --hard origin/main
+        docker compose up -d --build
+        docker image prune -f

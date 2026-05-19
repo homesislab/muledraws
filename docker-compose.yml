@@ -1,0 +1,25 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: muledraws_app
+    ports:
+      - "8001:80"
+    volumes:
+      - .:/var/www/html
+    env_file:
+      - .env
+    environment:
+      - DB_HOSTNAME=mariadb_server
+      - DB_USERNAME=muledraws
+      - DB_PASSWORD=muledraws
+      - DB_DATABASE=muledraws
+      - CI_ENV=development
+    networks:
+      - shared_apps
+    restart: unless-stopped
+
+networks:
+  shared_apps:
+    external: true
