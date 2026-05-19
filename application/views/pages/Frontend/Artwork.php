@@ -37,8 +37,8 @@
                             <?php } ?>
                         </div>
                         <?php else : ?>
-                        <div class="d-flex align-items-center justify-content-center" style="min-height:340px; background:#f4f4f2; border-radius:18px;">
-                            <p style="color:#bbb; font-size:0.9rem; letter-spacing:1px; text-transform:uppercase;">No gallery images yet</p>
+                        <div class="d-flex align-items-center justify-content-center" style="min-height:340px; background:var(--subtle); border-radius:18px;">
+                            <p style="color:var(--muted); font-size:0.9rem; letter-spacing:1px; text-transform:uppercase;">No gallery images yet</p>
                         </div>
                         <?php endif; ?>
                     </div>

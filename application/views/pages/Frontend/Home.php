@@ -68,10 +68,13 @@
             <p class="section-label">Selected Work</p>
             <div id="works" class="row m-0">
                 <?php foreach ($listWork as $index => $row) { ?>
-                <div class="col-6 col-sm-3 work-cell">
+                <div class="col-12 col-sm-6 work-cell animate-fade-up-delay">
                     <a href="<?= base_url('artwork/view/' . $row->id); ?>">
                         <div class="hover-zoom">
                             <img src="<?= base_url(); ?>assets/media/uploads/work/<?= $row->image; ?>" alt="<?= $row->name; ?>">
+                            <div class="work-title-overlay">
+                                <?= $row->name; ?>
+                            </div>
                         </div>
                     </a>
                 </div>

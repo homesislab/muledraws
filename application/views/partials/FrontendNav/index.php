@@ -67,7 +67,7 @@ $logoSrc    = base_url() . 'assets/media/uploads/logos/default.png';
                 <li class="nav-item ms-2">
                     <a href="<?= base_url($isLoggedIn ? 'master/works' : 'login'); ?>"
                        class="nav-link"
-                       style="background:var(--ink); color:#fff !important; border-radius:40px; padding:7px 20px !important; font-size:0.78rem; font-weight:700; letter-spacing:1px; text-transform:uppercase;">
+                       style="background:var(--ink); color:var(--bg-dark) !important; border-radius:40px; padding:7px 20px !important; font-size:0.78rem; font-weight:700; letter-spacing:1px; text-transform:uppercase;">
                         <?= $isLoggedIn ? 'Dashboard' : 'Login'; ?>
                     </a>
                 </li>

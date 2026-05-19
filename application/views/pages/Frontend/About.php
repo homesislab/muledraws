@@ -29,21 +29,20 @@
             <section id="about">
                 <div class="row g-5">
 
-                    <!-- Left col: photo + bio -->
-                    <div class="col-12 col-md-4 animate-fade-up">
+                    <!-- Left col: photo -->
+                    <div class="col-12 col-md-5 animate-fade-up">
                         <?php if (!empty($listWork[0]->image)) : ?>
                         <div class="about-photo-wrapper">
                             <img src="<?= base_url() . 'assets/media/uploads/work/' . $listWork[0]->image; ?>" alt="<?= $profileBusiness->name ?? 'Muledraws'; ?>">
                         </div>
                         <?php endif; ?>
-
-                        <p class="about-bio mt-4">
-                            <?= !empty($profileBusiness->bio) ? $profileBusiness->bio : 'Graphic designer & illustrator crafting bespoke brand identities, editorial imagery, and contemporary art packaging.'; ?>
-                        </p>
                     </div>
 
-                    <!-- Right cols: info lists -->
-                    <div class="col-12 col-md-8">
+                    <!-- Right cols: bio + info lists -->
+                    <div class="col-12 col-md-7">
+                        <p class="about-bio mb-5 animate-fade-up-delay">
+                            <?= !empty($profileBusiness->bio) ? $profileBusiness->bio : 'Graphic designer & illustrator crafting bespoke brand identities, editorial imagery, and contemporary art packaging.'; ?>
+                        </p>
                         <div class="row g-4 animate-fade-up-delay">
 
                             <div class="col-12 col-sm-4">
