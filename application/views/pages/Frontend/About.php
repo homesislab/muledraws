@@ -15,74 +15,72 @@
 </head>
 
 <body>
-    <div class="container">
-        <?php
-        $CI = get_instance();
-        $navSocmed = [];
-        if (isset($CI->profileBusinessModel)) {
-            $navSocmed = $CI->profileBusinessModel->getListSocmed();
-        }
-        $this->load->view('partials/FrontendNav/index', ['activePage' => 'about', 'listSocmed' => $navSocmed]);
-        ?>
+    <?php
+    $CI = get_instance();
+    $navSocmed = [];
+    if (isset($CI->profileBusinessModel)) {
+        $navSocmed = $CI->profileBusinessModel->getListSocmed();
+    }
+    $this->load->view('partials/FrontendNav/index', ['activePage' => 'about', 'listSocmed' => $navSocmed]);
+    ?>
 
-        <main>
-            <section id="about">
-                <div class="row g-5">
+    <main>
+        <section id="about">
+            <div class="row g-5">
 
-                    <!-- Left col: photo -->
-                    <div class="col-12 col-md-5 animate-fade-up">
-                        <?php if (!empty($listWork[0]->image)) : ?>
-                        <div class="about-photo-wrapper">
-                            <img src="<?= base_url() . 'assets/media/uploads/work/' . $listWork[0]->image; ?>" alt="<?= $profileBusiness->name ?? 'Muledraws'; ?>">
-                        </div>
-                        <?php endif; ?>
+                <!-- Left col: photo -->
+                <div class="col-12 col-md-5 animate-fade-up">
+                    <?php if (!empty($listWork[0]->image)) : ?>
+                    <div class="about-photo-wrapper">
+                        <img src="<?= base_url() . 'assets/media/uploads/work/' . $listWork[0]->image; ?>" alt="<?= $profileBusiness->name ?? 'Muledraws'; ?>">
                     </div>
-
-                    <!-- Right cols: bio + info lists -->
-                    <div class="col-12 col-md-7">
-                        <p class="about-bio mb-5 animate-fade-up-delay">
-                            <?= !empty($profileBusiness->bio) ? $profileBusiness->bio : 'Graphic designer & illustrator crafting bespoke brand identities, editorial imagery, and contemporary art packaging.'; ?>
-                        </p>
-                        <div class="row g-4 animate-fade-up-delay">
-
-                            <div class="col-12 col-sm-4">
-                                <p class="about-section-title">Selected Clients</p>
-                                <ul>
-                                    <?php foreach ($listClient as $row) { ?>
-                                    <li><?= $row->name; ?></li>
-                                    <?php } ?>
-                                </ul>
-                            </div>
-
-                            <div class="col-12 col-sm-4">
-                                <p class="about-section-title">Awards</p>
-                                <ul>
-                                    <?php foreach ($listAwward as $row) { ?>
-                                    <li><?= $row->name; ?></li>
-                                    <?php } ?>
-                                </ul>
-                            </div>
-
-                            <div class="col-12 col-sm-4">
-                                <p class="about-section-title">Features</p>
-                                <ul>
-                                    <?php foreach ($listFeature as $row) { ?>
-                                    <li><?= $row->name; ?></li>
-                                    <?php } ?>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-
+                    <?php endif; ?>
                 </div>
-            </section>
-        </main>
 
-        <footer class="text-center">
-            <p>© <?= date('Y'); ?> Muledraws — All Rights Reserved</p>
-        </footer>
-    </div>
+                <!-- Right cols: bio + info lists -->
+                <div class="col-12 col-md-7">
+                    <p class="about-bio mb-5 animate-fade-up-delay">
+                        <?= !empty($profileBusiness->bio) ? $profileBusiness->bio : 'Graphic designer & illustrator crafting bespoke brand identities, editorial imagery, and contemporary art packaging.'; ?>
+                    </p>
+                    <div class="row g-4 animate-fade-up-delay">
+
+                        <div class="col-12 col-sm-4">
+                            <p class="about-section-title">Selected Clients</p>
+                            <ul>
+                                <?php foreach ($listClient as $row) { ?>
+                                <li><?= $row->name; ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+
+                        <div class="col-12 col-sm-4">
+                            <p class="about-section-title">Awards</p>
+                            <ul>
+                                <?php foreach ($listAwward as $row) { ?>
+                                <li><?= $row->name; ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+
+                        <div class="col-12 col-sm-4">
+                            <p class="about-section-title">Features</p>
+                            <ul>
+                                <?php foreach ($listFeature as $row) { ?>
+                                <li><?= $row->name; ?></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center">
+        <p>© <?= date('Y'); ?> Muledraws — All Rights Reserved</p>
+    </footer>
     <script src="<?= base_url(); ?>assets/frontend/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

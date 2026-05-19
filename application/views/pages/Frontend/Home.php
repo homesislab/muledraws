@@ -21,54 +21,14 @@
 </head>
 
 <body>
-    <div class="container">
-        <?php $this->load->view('partials/FrontendNav/index', ['activePage' => 'work', 'listSocmed' => $listSocmed]); ?>
-
+    <?php $this->load->view('partials/FrontendNav/index', ['activePage' => 'work', 'listSocmed' => $listSocmed]); ?>
+    
+    <div class="container-fluid-grid">
         <main>
-            <!-- Premium Welcome -->
-            <header class="welcome-header animate-fade-up">
-                <p class="welcome-eyebrow">Portfolio — Graphic Design & Illustration</p>
-                <h1 class="welcome-title">
-                    <?= !empty($profileBusiness->name) ? $profileBusiness->name : 'Muledraws'; ?>
-                </h1>
-                <p class="welcome-subtitle animate-fade-up-delay">
-                    <?= !empty($profileBusiness->bio) ? $profileBusiness->bio : 'Graphic designer &amp; illustrator crafting bespoke brand identities, hand-drawn logos, and contemporary art packaging.'; ?>
-                </p>
-            </header>
-
-            <!-- Hero Carousel -->
-            <?php if (!empty($listCarousel)) : ?>
-            <div id="carousel" class="carousel slide carousel-premium-wrapper" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <?php foreach ($listCarousel as $index => $row) { ?>
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="<?= $index; ?>"
-                        <?= $index === 0 ? 'class="active" aria-current="true"' : ''; ?>
-                        aria-label="Slide <?= $index + 1; ?>"></button>
-                    <?php } ?>
-                </div>
-                <div class="carousel-inner">
-                    <?php foreach ($listCarousel as $index => $row) { ?>
-                    <div class="carousel-item <?= ($index == 0 ? 'active' : ''); ?>">
-                        <img src="<?= base_url(); ?>assets/media/uploads/carousel/<?= $row->image; ?>" alt="<?= $row->description ?? 'Muledraws'; ?>">
-                    </div>
-                    <?php } ?>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            <?php endif; ?>
-
-            <!-- Works Grid -->
-            <p class="section-label">Selected Work</p>
-            <div id="works" class="row m-0">
+            <!-- Works Grid (Dense) -->
+            <div id="works" class="animate-fade-up">
                 <?php foreach ($listWork as $index => $row) { ?>
-                <div class="col-12 col-sm-6 work-cell animate-fade-up-delay">
+                <div class="work-cell">
                     <a href="<?= base_url('artwork/view/' . $row->id); ?>">
                         <div class="hover-zoom">
                             <img src="<?= base_url(); ?>assets/media/uploads/work/<?= $row->image; ?>" alt="<?= $row->name; ?>">
