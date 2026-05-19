@@ -85,8 +85,8 @@
                                             <button type="button" class="btn btn-danger btn-icon actionRemoveSocialMedia"><i class="la la-trash"></i></button>
                                         </td>
                                     </tr>
-                                <? } ?>
-                            <? } else { ?>
+                                <?php } ?>
+                            <?php } else { ?>
                                 <tr>
                                     <td>
                                         <input class="form-control socialMediaName" type="text" placeholder="Name" value="">
@@ -98,7 +98,7 @@
                                         <button type="button" class="btn btn-danger btn-icon actionRemoveSocialMedia"><i class="la la-trash"></i></button>
                                     </td>
                                 </tr>
-                            <? } ?>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
