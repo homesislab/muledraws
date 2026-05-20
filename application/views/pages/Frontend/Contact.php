@@ -11,7 +11,7 @@
     <title>Muledraws | Contact</title>
     <link rel="icon" type="image/x-icon" href="<?= base_url(); ?>assets/media/logos/favicon.ico">
     <link href="<?= base_url(); ?>assets/frontend/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/frontend/css/style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/frontend/css/style.css?v=1.0.2">
 </head>
 
 <body>
