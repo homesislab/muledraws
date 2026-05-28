@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: muledraws
+  namespace: muledraws
+  labels:
+    app: muledraws
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: muledraws
+  template:
+    metadata:
+      labels:
+        app: muledraws
+    spec:
+      containers:
+        - name: muledraws
+          image: ghcr.io/homesislab/muledraws:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: CI_ENV
+              value: "production"
+            - name: BASE_URL
+              value: "https://muledraws.my.id/"
+            - name: CI_INDEX_PAGE
+              value: ""
+            - name: CI_URI_PROTOCOL
+              value: "REQUEST_URI"
+            - name: DB_DRIVER
+              value: "mysqli"
+            - name: DB_HOSTNAME
+              valueFrom:
+                secretKeyRef:
+                  name: muledraws-secret
+                  key: DB_HOSTNAME
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: muledraws-secret
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: muledraws-secret
+                  key: DB_PASSWORD
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: muledraws-secret
+                  key: DB_DATABASE
+            - name: CI_SESS_DRIVER
+              value: "database"
+            - name: CI_SESS_COOKIE_NAME
+              value: "muledraws"
+            - name: CI_SESS_EXPIRATION
+              value: "7200"
+            - name: CI_SESS_SAVE_PATH
+              value: "ci_sessions"
+            - name: CI_SESS_MATCH_IP
+              value: "false"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+      imagePullSecrets:
+        - name: ghcr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: muledraws
+  namespace: muledraws
+spec:
+  selector:
+    app: muledraws
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: muledraws
+  namespace: muledraws
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: muledraws.my.id
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: muledraws
+                port:
+                  number: 80

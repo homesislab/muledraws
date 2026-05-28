@@ -1,0 +1,11 @@
+.env
+*.log
+.git
+.github
+node_modules
+run_migration.php
+test_db.php
+temp_*.html
+temp_*.php
+cookies.txt
+.DS_Store

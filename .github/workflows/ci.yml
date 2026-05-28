@@ -34,38 +34,86 @@ jobs:
     # - name: Run tests with PHPUnit
     #   run: vendor/bin/phpunit
 
-  deploy:
+  build-and-push:
     needs: build-and-test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    environment: home
-    
+    permissions:
+      contents: read
+      packages: write
+
     steps:
-    - name: Install Cloudflared
-      run: |
-        curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
-        sudo dpkg -i cloudflared.deb
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-    - name: Deploy to Server (Native SSH)
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: |
+          ghcr.io/homesislab/muledraws:latest
+          ghcr.io/homesislab/muledraws:${{ github.sha }}
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    environment: home
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v3
+
+    - name: Configure kubeconfig
       env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-        SSH_USER: ${{ secrets.SSH_USER }}
-        CF_ID: ${{ secrets.CF_CLIENT_ID }}
-        CF_SECRET: ${{ secrets.CF_CLIENT_SECRET }}
+        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
       run: |
-        mkdir -p ~/.ssh
-        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        
-        echo "Host ssh.homesislab.my.id" >> ~/.ssh/config
-        echo "  StrictHostKeyChecking no" >> ~/.ssh/config
-        echo "  User $SSH_USER" >> ~/.ssh/config
-        echo "  ProxyCommand cloudflared access ssh --hostname %h --id $CF_ID --secret $CF_SECRET" >> ~/.ssh/config
+        mkdir -p ~/.kube
+        echo "$KUBE_CONFIG" | base64 -d > ~/.kube/config
+        chmod 600 ~/.kube/config
 
-        ssh ssh.homesislab.my.id << 'EOF'
-          cd /home/gie/workspace/muledraws
-          git fetch origin main
-          git reset --hard origin/main
-          docker compose up -d --build
-          docker image prune -f
-        EOF
+    - name: Create namespace if not exists
+      run: kubectl create namespace muledraws --dry-run=client -o yaml | kubectl apply -f -
+
+    - name: Create GHCR image pull secret
+      env:
+        GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        kubectl create secret docker-registry ghcr-secret \
+          --docker-server=ghcr.io \
+          --docker-username=${{ github.actor }} \
+          --docker-password=$GHCR_TOKEN \
+          --namespace=muledraws \
+          --dry-run=client -o yaml | kubectl apply -f -
+
+    - name: Create database secret
+      env:
+        DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}
+        DB_USERNAME: ${{ secrets.DB_USERNAME }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_DATABASE: ${{ secrets.DB_DATABASE }}
+      run: |
+        kubectl create secret generic muledraws-secret \
+          --from-literal=DB_HOSTNAME="$DB_HOSTNAME" \
+          --from-literal=DB_USERNAME="$DB_USERNAME" \
+          --from-literal=DB_PASSWORD="$DB_PASSWORD" \
+          --from-literal=DB_DATABASE="$DB_DATABASE" \
+          --namespace=muledraws \
+          --dry-run=client -o yaml | kubectl apply -f -
+
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl apply -f k8s/deployment.yaml
+        kubectl rollout restart deployment/muledraws -n muledraws
+        kubectl rollout status deployment/muledraws -n muledraws --timeout=120s
