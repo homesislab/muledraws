@@ -4,7 +4,6 @@ class ProfileBusinessModel extends CI_Model
 {
 	public function getProfileBusiness()
 	{
-		$this->db->where('id', 0);
 		$query = $this->db->get('setting_profile_business');
 
 		return $query->row();
@@ -12,7 +11,6 @@ class ProfileBusinessModel extends CI_Model
 
 	public function getListSocmed()
 	{
-		$this->db->where('profile_id', 0);
 		$query = $this->db->get('setting_profile_business_socmed');
 
 		return $query->result();

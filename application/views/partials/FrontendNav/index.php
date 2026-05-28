@@ -53,7 +53,7 @@ $logoSrc    = base_url() . 'assets/media/uploads/logos/default.png';
                 </li>
             </ul>
 
-            <!-- Right side: social icons + login/dashboard -->
+            <!-- Right side: social icons (IG, Be, Dribbble) -->
             <ul class="navbar-nav align-items-center gap-1 flex-row flex-wrap">
                 <?php foreach ($listSocmed as $row) : ?>
                 <li class="nav-item">
@@ -63,14 +63,6 @@ $logoSrc    = base_url() . 'assets/media/uploads/logos/default.png';
                     </a>
                 </li>
                 <?php endforeach; ?>
-
-                <li class="nav-item ms-2">
-                    <a href="<?= base_url($isLoggedIn ? 'master/works' : 'login'); ?>"
-                       class="nav-link"
-                       style="background:var(--ink); color:var(--bg-light) !important; padding:8px 16px !important; font-family:var(--font-display); font-size:0.8rem; font-weight:700; letter-spacing:2px; text-transform:uppercase;">
-                        <?= $isLoggedIn ? 'Dashboard' : 'Login'; ?>
-                    </a>
-                </li>
             </ul>
         </div>
 
