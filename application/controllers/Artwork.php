@@ -21,7 +21,7 @@ class Artwork extends CI_Controller
 		$data = [];
 		$data['title'] = 'Artwork';
 
-		$data['descriptionArtwork'] = $this->artworkModel->getArtwork($id);
+		$data['artwork'] = $this->artworkModel->getArtwork($id);
 		$data['galleryArtwork'] = $this->artworkModel->getArtworkDetail($id);
 
 		$this->load->view('pages/Frontend/Artwork', $data);

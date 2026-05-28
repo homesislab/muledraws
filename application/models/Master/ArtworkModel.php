@@ -8,7 +8,7 @@ class ArtworkModel extends CI_Model
 		$this->db->where('status', 1);
 		$query = $this->db->get('master_works');
 
-		return $query->row()->description;
+		return $query->row();
 	}
 
 	public function getArtworkDetail($id)

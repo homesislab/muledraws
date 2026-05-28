@@ -352,57 +352,153 @@ textarea.contact-input {
 }
 
 /* ============================================================
-   ARTWORK DETAIL PAGE
+   ARTWORK DETAIL PAGE (Studio Muti Uber Aesthetic)
    ============================================================ */
+body.artwork-detail-page {
+    background-color: #eef1f4;
+}
+
+body.artwork-detail-page .navbar {
+    background-color: #eef1f4;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+body.artwork-detail-page footer {
+    background-color: #eef1f4;
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+
 #artwork {
-    padding-top: 60px;
-    padding-bottom: 120px;
-    max-width: 1400px;
+    padding-top: 40px;
+    padding-bottom: 100px;
+}
+
+.artwork-container {
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 40px;
 }
 
-.artwork-gallery { row-gap: 24px; }
-
-.artwork-info-panel {
-    position: sticky;
-    top: 100px;
-    padding-left: 40px;
+@media (max-width: 767px) {
+    .artwork-container {
+        padding: 0 16px;
+    }
 }
 
-.artwork-back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
+.artwork-header {
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    text-align: center;
+    padding: 40px 16px 0 16px;
+}
+
+.artwork-title {
     font-family: var(--font-display);
-    font-size: 0.85rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 700;
-    letter-spacing: 2px;
     text-transform: uppercase;
+    letter-spacing: 2px;
     color: var(--ink);
-    margin-bottom: 40px;
+    margin-bottom: 24px;
+    line-height: 1.1;
 }
 
 .artwork-description {
     font-family: var(--font-body);
-    font-size: 1.4rem;
+    font-size: 1.25rem;
     font-weight: 300;
     line-height: 1.6;
     color: var(--ink);
-    margin-bottom: 40px;
+    opacity: 0.85;
 }
 
-.artwork-meta-tag {
-    display: inline-block;
-    background: transparent;
-    border: 1px solid var(--ink);
-    padding: 6px 16px;
+.artwork-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.artwork-row {
+    margin: 0;
+}
+
+.artwork-img-wrapper {
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: transparent;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+
+.artwork-img-wrapper:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.artwork-img-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.artwork-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.artwork-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
     font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--ink);
-    margin-bottom: 12px;
-    margin-right: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
     text-transform: uppercase;
+    color: var(--ink);
+    padding: 10px 20px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    transition: all 0.3s var(--ease);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.artwork-back-btn:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    background: var(--ink);
+    color: #ffffff !important;
+}
+
+.artwork-back-to-top {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink);
+    transition: opacity 0.3s;
+}
+
+.artwork-back-to-top:hover {
+    opacity: 0.5;
+}
+
+@media (max-width: 575px) {
+    .artwork-footer {
+        flex-direction: column;
+        gap: 20px;
+    }
 }
 
 /* ============================================================

@@ -13,8 +13,9 @@ RUN apt-get update && apt-get install -y \
 # Enable Apache mod_rewrite and mod_headers
 RUN a2enmod rewrite headers
 
-# Allow override for .htaccess
+# Allow override for .htaccess and set ServerName to suppress FQDN warning
 RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Set working directory
 WORKDIR /var/www/html
