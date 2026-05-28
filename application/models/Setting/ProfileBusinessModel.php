@@ -21,6 +21,7 @@ class ProfileBusinessModel extends CI_Model
 		$this->name = $_POST['name'];
 		$this->email = $_POST['email'];
 		$this->phone = $_POST['phone'];
+		$this->whatsapp = $_POST['whatsapp'];
 		$this->address = $_POST['address'];
 		$this->bio = $_POST['bio'];
 

@@ -29,6 +29,12 @@
                 </div>
             </div>
             <div class="form-group row">
+                <label for="" class="col-2 col-form-label">WhatsApp Number:</label>
+                <div class="col-10">
+                    <input class="form-control mask-phone" type="text" name="whatsapp" placeholder="WhatsApp Number (e.g., 628123456789)" value="{whatsapp}">
+                </div>
+            </div>
+            <div class="form-group row">
                 <label for="" class="col-2 col-form-label">Address:</label>
                 <div class="col-10">
                     <textarea class="form-control" rows="3" name="address" placeholder="Address">{address}</textarea>

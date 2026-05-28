@@ -19,6 +19,7 @@ CREATE TABLE `setting_profile_business` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone` varchar(64) DEFAULT NULL,
+  `whatsapp` varchar(64) DEFAULT NULL,
   `address` text DEFAULT NULL,
   `logo` varchar(255) DEFAULT NULL,
   `bio` text DEFAULT NULL,

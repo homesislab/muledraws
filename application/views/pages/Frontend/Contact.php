@@ -73,6 +73,22 @@
                         </div>
                         <?php endif; ?>
 
+                        <?php if (!empty($profileBusiness->whatsapp)) : 
+                            $waClean = preg_replace('/[^0-9]/', '', $profileBusiness->whatsapp);
+                            if (strpos($waClean, '0') === 0) {
+                                $waClean = '62' . substr($waClean, 1);
+                            }
+                        ?>
+                        <div class="contact-info-item">
+                            <p class="contact-info-item-label">WhatsApp</p>
+                            <p class="contact-info-item-value">
+                                <a href="https://wa.me/<?= $waClean; ?>" target="_blank" rel="noopener">
+                                    <?= $profileBusiness->whatsapp; ?>
+                                </a>
+                            </p>
+                        </div>
+                        <?php endif; ?>
+
                         <?php if (!empty($profileBusiness->address)) : ?>
                         <div class="contact-info-item">
                             <p class="contact-info-item-label">Studio</p>

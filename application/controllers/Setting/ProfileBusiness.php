@@ -38,6 +38,7 @@ class ProfileBusiness extends CI_Controller
 				'name' => $row->name,
 				'email' => $row->email,
 				'phone' => $row->phone,
+				'whatsapp' => $row->whatsapp,
 				'address' => $row->address,
 				'logo' => ($row->logo ? $row->logo : 'default.png'),
 				'bio' => $row->bio,
