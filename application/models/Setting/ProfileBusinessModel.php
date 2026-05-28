@@ -68,7 +68,7 @@ class ProfileBusinessModel extends CI_Model
 
 	public function deleteSocialMedia($profile_id)
 	{
-		$this->db->where('profile_id', $profile_id);
+		// Clear all previous social media entries to avoid duplicate records between profile ID 0 and 1
 		$this->db->delete('setting_profile_business_socmed');
 	}
 	

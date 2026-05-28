@@ -286,9 +286,15 @@
             border-color: #fff1f2 !important;
             color: #e11d48 !important;
         }
+        .btn.btn-danger i {
+            color: #e11d48 !important;
+        }
         .btn.btn-danger:hover {
             background-color: #ffe4e6 !important;
             border-color: #ffe4e6 !important;
+            color: #be123c !important;
+        }
+        .btn.btn-danger:hover i {
             color: #be123c !important;
         }
         
