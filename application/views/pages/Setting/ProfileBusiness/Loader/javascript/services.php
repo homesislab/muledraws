@@ -30,15 +30,15 @@ function rowTableSocialMedia() {
 }
 
 function submitForm() {
+    // Populate hidden field BEFORE form submission
     $("#socialMedia").val(JSON.stringify(getSocialMedia()));
-    showAlert('Success!', 'Business Profile data updated successfully.', 'success');
 }
 
 function showAlert(title, text, type) {
     swal.fire({
         title: title,
         text: text,
-        type: type,
+        icon: type,
         timer: 1500,
         showConfirmButton: false
     });
