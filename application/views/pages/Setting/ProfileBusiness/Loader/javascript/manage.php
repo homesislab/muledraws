@@ -19,8 +19,8 @@ $(document).ready(function() {
         $("#tableSocialMedia tbody").append(rowTableSocialMedia());
     });
 
-    $(document).on("click", ".actionRemovetableSocialMedia", function() {
-        if (confirm("Delete this account number data ?") == true) {
+    $(document).on("click", ".actionRemoveSocialMedia", function() {
+        if (confirm("Delete this social media row?") == true) {
             $(this).closest('tr').remove();
         }
         return false;
