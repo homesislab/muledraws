@@ -11,37 +11,37 @@
     <form id="form" class="kt-form" autocomplete="off" action="<?= $loader['path'] ?>save" enctype="multipart/form-data" method="POST">
         <div class="kt-portlet__body">
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Business Name: <label class="kt-font-danger">*</label></label>
+                <label for="input-name" class="col-2 col-form-label">Business Name: <span class="kt-font-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="name" placeholder="Business Name" value="{name}">
+                    <input id="input-name" class="form-control" type="text" name="name" placeholder="Business Name" value="{name}">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="example-tel-input" class="col-2 col-form-label">E-mail:</label>
+                <label for="input-email" class="col-2 col-form-label">E-mail:</label>
                 <div class="col-10">
-                    <input class="form-control mask-email" type="text" name="email" placeholder="E-mail" value="{email}">
+                    <input id="input-email" class="form-control mask-email" type="text" name="email" placeholder="E-mail" value="{email}">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="example-tel-input" class="col-2 col-form-label">Phone Number: <label class="kt-font-danger">*</label></label>
+                <label for="input-phone" class="col-2 col-form-label">Phone Number: <span class="kt-font-danger">*</span></label>
                 <div class="col-10">
-                    <input class="form-control mask-phone" type="text" name="phone" placeholder="Phone Number" value="{phone}">
+                    <input id="input-phone" class="form-control mask-phone" type="text" name="phone" placeholder="Phone Number" value="{phone}">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">WhatsApp Number:</label>
+                <label for="input-whatsapp" class="col-2 col-form-label">WhatsApp Number:</label>
                 <div class="col-10">
-                    <input class="form-control mask-phone" type="text" name="whatsapp" placeholder="WhatsApp Number (e.g., 628123456789)" value="{whatsapp}">
+                    <input id="input-whatsapp" class="form-control mask-phone" type="text" name="whatsapp" placeholder="WhatsApp Number (e.g., 628123456789)" value="{whatsapp}">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Address:</label>
+                <label for="input-address" class="col-2 col-form-label">Address:</label>
                 <div class="col-10">
-                    <textarea class="form-control" rows="3" name="address" placeholder="Address">{address}</textarea>
+                    <textarea id="input-address" class="form-control" rows="3" name="address" placeholder="Address">{address}</textarea>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="example-tel-input" class="col-2 col-form-label">Logo:</label>
+                <label for="kt_apps_user_add_avatar" class="col-2 col-form-label">Logo:</label>
                 <div class="col-10">
                     <div class="kt-avatar kt-avatar--outline" id="kt_apps_user_add_avatar">
                         <div class="kt-avatar__holder" style="background-image: url(&quot;{uploadsPath}logos/{logo}&quot;); background-position: center; background-size: contain; width: 220px; height: 120px;"></div>
@@ -50,22 +50,22 @@
                             <input type="file" name="logo" accept=".png, .jpg, .jpeg">
                         </label>
                         <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel logo">
-							<i class="fa fa-times"></i>
-						</span>
+								<i class="fa fa-times"></i>
+							</span>
                     </div>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="" class="col-2 col-form-label">Bio:</label>
+                <label for="input-bio" class="col-2 col-form-label">Bio:</label>
                 <div class="col-10">
-                    <textarea class="form-control" name="bio" placeholder="Bio" rows="10">{bio}</textarea>
+                    <textarea id="input-bio" class="form-control" name="bio" placeholder="Bio" rows="10">{bio}</textarea>
                 </div>
             </div>
 
             <div class="kt-separator kt-separator--border-dashed kt-mt-5"></div>
 
             <div class="form-group row">
-                <label for="example-tel-input" class="col-2 col-form-label">Social Media</label>
+                <label class="col-2 col-form-label">Social Media</label>
                 <div class="col-10">
                     <table class="table table-striped table-hover table-bordered" id="tableSocialMedia">
                         <thead>
