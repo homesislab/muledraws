@@ -15,6 +15,13 @@ function getSocialMedia() {
     return socialMedia;
 }
 
+function removeSocialMediaRow(btn) {
+    if (confirm('Hapus baris media sosial ini?')) {
+        btn.closest('tr').remove();
+    }
+    return false;
+}
+
 function rowTableSocialMedia() {
     return `<tr>
         <td>
@@ -24,7 +31,7 @@ function rowTableSocialMedia() {
             <input class="form-control socialMediaURL" type="text" placeholder="Social Media URL" value="">
         </td>
         <td class="text-center">
-            <button type="button" class="btn btn-danger btn-icon actionRemoveSocialMedia"><i class="la la-trash"></i></button>
+            <button type="button" class="btn btn-danger btn-icon" onclick="return removeSocialMediaRow(this)"><i class="la la-trash"></i></button>
         </td>
     </tr>`;
 }

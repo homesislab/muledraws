@@ -19,13 +19,6 @@ $(document).ready(function() {
         $("#tableSocialMedia tbody").append(rowTableSocialMedia());
     });
 
-    $(document).on("click", ".actionRemoveSocialMedia", function() {
-        if (confirm("Delete this social media row?") == true) {
-            $(this).closest('tr').remove();
-        }
-        return false;
-    });
-
     document.querySelector('#form').addEventListener('submit', function(e) {
         submitForm();
     });

@@ -88,7 +88,7 @@
                                             <input class="form-control socialMediaURL" type="text" placeholder="URL" value="<?= $socmed->url; ?>">
                                         </td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-danger btn-icon actionRemoveSocialMedia"><i class="la la-trash"></i></button>
+                                            <button type="button" class="btn btn-danger btn-icon" onclick="return removeSocialMediaRow(this)"><i class="la la-trash"></i></button>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -101,7 +101,7 @@
                                         <input class="form-control socialMediaURL" type="text" placeholder="URL" value="">
                                     </td>
                                     <td class="text-center">
-                                        <button type="button" class="btn btn-danger btn-icon actionRemoveSocialMedia"><i class="la la-trash"></i></button>
+                                        <button type="button" class="btn btn-danger btn-icon" onclick="return removeSocialMediaRow(this)"><i class="la la-trash"></i></button>
                                     </td>
                                 </tr>
                             <?php } ?>
