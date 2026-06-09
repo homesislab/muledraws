@@ -34,54 +34,16 @@
             <div class="animate-fade-up-delay">
                 <?php if (!empty($galleryArtwork)) : ?>
                 <div class="artwork-gallery">
-                    <?php
-                    $index = 0;
-                    $count = count($galleryArtwork);
-                    
-                    // First image: 1 full-width hero image
-                    if ($index < $count) {
-                        $heroImage = $galleryArtwork[$index];
-                        $index++;
-                        ?>
-                        <div class="artwork-row row g-4 justify-content-center">
+                    <div class="artwork-row row g-4 justify-content-center">
+                        <?php foreach ($galleryArtwork as $img) : ?>
                             <div class="col-12">
                                 <div class="artwork-img-wrapper">
-                                    <img src="<?= base_url(); ?>assets/media/uploads/work/<?= $heroImage->image; ?>" 
-                                         alt="<?= htmlspecialchars($artwork->name ?? 'Artwork'); ?> - Hero">
+                                    <img src="<?= base_url(); ?>assets/media/uploads/work/<?= $img->image; ?>" 
+                                         alt="<?= htmlspecialchars($artwork->name ?? 'Artwork'); ?> - Detail">
                                 </div>
                             </div>
-                        </div>
-                        <?php
-                    }
-                    
-                    // Subsequent images: 3-column grids
-                    while ($index < $count) {
-                        $rowImages = array_slice($galleryArtwork, $index, 3);
-                        $index += count($rowImages);
-                        
-                        $colCount = count($rowImages);
-                        ?>
-                        <div class="artwork-row row g-4 justify-content-center">
-                            <?php foreach ($rowImages as $imgRow) : ?>
-                                <?php 
-                                $colClass = 'col-12';
-                                if ($colCount === 2) {
-                                    $colClass = 'col-12 col-md-6';
-                                } elseif ($colCount === 3) {
-                                    $colClass = 'col-12 col-md-4';
-                                }
-                                ?>
-                                <div class="<?= $colClass; ?>">
-                                    <div class="artwork-img-wrapper">
-                                        <img src="<?= base_url(); ?>assets/media/uploads/work/<?= $imgRow->image; ?>" 
-                                             alt="<?= htmlspecialchars($artwork->name ?? 'Artwork'); ?> - Detail">
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <?php
-                    }
-                    ?>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
                 <?php else : ?>
                 <div class="d-flex align-items-center justify-content-center" style="min-height:340px; background:#ffffff; border:1px dashed rgba(0,0,0,0.1); border-radius:18px;">
