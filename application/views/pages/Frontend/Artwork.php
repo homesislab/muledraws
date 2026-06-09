@@ -11,7 +11,7 @@
     <title>Muledraws | <?= htmlspecialchars($artwork->name ?? 'Artwork'); ?></title>
     <link rel="icon" type="image/x-icon" href="<?= base_url(); ?>assets/media/logos/favicon.ico">
     <link href="<?= base_url(); ?>assets/frontend/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/frontend/css/style.css?v=1.0.3">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/frontend/css/style.css?v=1.0.4">
 </head>
 
 <body class="artwork-detail-page">
