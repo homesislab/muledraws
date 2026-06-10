@@ -34,11 +34,14 @@
             <div class="animate-fade-up-delay">
                 <?php if (!empty($galleryArtwork)) : ?>
                 <div class="artwork-gallery">
-                    <?php foreach ($galleryArtwork as $img) : ?>
-                        <div class="artwork-img-wrapper" style="width: 100%; margin-bottom: 24px;">
-                            <img src="<?= base_url(); ?>assets/media/uploads/work/<?= $img->image; ?>" 
-                                 alt="<?= htmlspecialchars($artwork->name ?? 'Artwork'); ?> - Detail"
-                                 style="width: 100%; height: auto; display: block;">
+                    <?php foreach ($galleryArtwork as $imgRow) : ?>
+                        <div class="artwork-row row g-4 justify-content-center">
+                            <div class="col-12">
+                                <div class="artwork-img-wrapper">
+                                    <img src="<?= base_url(); ?>assets/media/uploads/work/<?= $imgRow->image; ?>" 
+                                         alt="<?= htmlspecialchars($artwork->name ?? 'Artwork'); ?>">
+                                </div>
+                            </div>
                         </div>
                     <?php endforeach; ?>
                 </div>

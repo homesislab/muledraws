@@ -125,10 +125,10 @@ ul { list-style: none; padding: 0; margin: 0; }
 }
 
 @media (max-width: 1199px) {
-    .work-cell { width: 33.333%; }
+    .work-cell { width: 50%; }
 }
 @media (max-width: 767px) {
-    .work-cell { width: 50%; }
+    .work-cell { width: 100%; }
 }
 
 .hover-zoom {
