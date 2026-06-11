@@ -20,27 +20,17 @@
     <main class="artwork-container">
         <section id="artwork">
             
-            <!-- Artwork Header (Centered Top) -->
-            <header class="artwork-header animate-fade-up">
-                <h1 class="artwork-title"><?= htmlspecialchars($artwork->name ?? 'Artwork'); ?></h1>
-                <?php if (!empty($artwork->description)) : ?>
-                <p class="artwork-description"><?= htmlspecialchars($artwork->description); ?></p>
-                <?php else : ?>
-                <p class="artwork-description" style="color:var(--muted); font-style:italic;">No description available for this work.</p>
-                <?php endif; ?>
-            </header>
 
-            <!-- Gallery Grid (Studio Muti Creative Works West layout: 1 hero followed by 3-column rows) -->
+
+            <!-- Gallery Grid (4-column layout) -->
             <div class="animate-fade-up-delay">
                 <?php if (!empty($galleryArtwork)) : ?>
                 <div class="artwork-gallery">
                     <?php foreach ($galleryArtwork as $imgRow) : ?>
-                        <div class="artwork-row row g-4 justify-content-center">
-                            <div class="col-12">
-                                <div class="artwork-img-wrapper">
-                                    <img src="<?= base_url(); ?>assets/media/uploads/work/<?= $imgRow->image; ?>" 
-                                         alt="<?= htmlspecialchars($artwork->name ?? 'Artwork'); ?>">
-                                </div>
+                        <div class="artwork-gallery-item">
+                            <div class="artwork-img-wrapper">
+                                <img src="<?= base_url(); ?>assets/media/uploads/work/<?= $imgRow->image; ?>" 
+                                     alt="<?= htmlspecialchars($artwork->name ?? 'Artwork'); ?>">
                             </div>
                         </div>
                     <?php endforeach; ?>
