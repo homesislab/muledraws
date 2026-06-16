@@ -121,14 +121,19 @@ class WorkModel extends CI_Model
 		if (isset($_FILES['image'])) {
 			if ($_FILES['image']['name'] != '') {
 				$config['upload_path'] = './assets/media/uploads/work';
-				$config['allowed_types'] = 'png|jpg|jpeg';
+				$config['allowed_types'] = 'png|jpg|jpeg|webp';
 				$config['encrypt_name'] = true;
 
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('image')) {
 					$image_upload = $this->upload->data();
-					$this->image = $image_upload['file_name'];
+
+					$this->load->helper('image');
+					$compressed = compressToWebp(
+						'./assets/media/uploads/work/' . $image_upload['file_name']
+					);
+					$this->image = $compressed ?: $image_upload['file_name'];
 
 					if ($update == true) {
 						$this->removeImage($_POST['id']);
@@ -180,14 +185,19 @@ class WorkModel extends CI_Model
 		if (isset($_FILES['image'])) {
 			if ($_FILES['image']['name'] != '') {
 				$config['upload_path'] = './assets/media/uploads/work';
-				$config['allowed_types'] = 'png|jpg|jpeg';
+				$config['allowed_types'] = 'png|jpg|jpeg|webp';
 				$config['encrypt_name'] = true;
 
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('image')) {
 					$image_upload = $this->upload->data();
-					$this->image = $image_upload['file_name'];
+
+					$this->load->helper('image');
+					$compressed = compressToWebp(
+						'./assets/media/uploads/work/' . $image_upload['file_name']
+					);
+					$this->image = $compressed ?: $image_upload['file_name'];
 					
 					return true;
 				} else {

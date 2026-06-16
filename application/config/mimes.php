@@ -77,6 +77,7 @@ return [
 	'jpeg' => ['image/jpeg', 'image/pjpeg'],
 	'jpg' => ['image/jpeg', 'image/pjpeg'],
 	'jpe' => ['image/jpeg', 'image/pjpeg'],
+	'webp' => 'image/webp',
 	'jp2' => ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
 	'j2k' => ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],
 	'jpf' => ['image/jp2', 'video/mj2', 'image/jpx', 'image/jpm'],

@@ -11,7 +11,15 @@
     <title>Muledraws | <?= htmlspecialchars($artwork->name ?? 'Artwork'); ?></title>
     <link rel="icon" type="image/x-icon" href="<?= base_url(); ?>assets/media/logos/favicon.ico">
     <link href="<?= base_url(); ?>assets/frontend/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/frontend/css/style.css?v=1.0.4">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/frontend/css/style.css?v=2.0.0">
+    <script>
+        // Anti-FOUC: apply theme before CSS paints
+        (function(){
+            var t = localStorage.getItem('muledraws-theme');
+            if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
 </head>
 
 <body class="artwork-detail-page">

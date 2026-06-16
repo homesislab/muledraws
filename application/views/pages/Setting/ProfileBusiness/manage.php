@@ -47,7 +47,8 @@
                         <div class="kt-avatar__holder" style="background-image: url(&quot;{uploadsPath}logos/{logo}&quot;); background-position: center; background-size: contain; width: 220px; height: 120px;"></div>
                         <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change logo">
                             <i class="fa fa-pen"></i>
-                            <input type="file" name="logo" accept=".png, .jpg, .jpeg">
+                            <input type="file" name="logo" accept=".png, .jpg, .jpeg, .webp">
+
                         </label>
                         <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel logo">
 								<i class="fa fa-times"></i>

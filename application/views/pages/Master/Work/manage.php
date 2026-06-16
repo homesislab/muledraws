@@ -11,7 +11,7 @@
                         <div class="kt-avatar__holder" style="background-image: url(&quot;{uploadsPath}work/{image}&quot;); background-position: center; background-size: contain; width: 240px; height: 180px;"></div>
                         <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change image">
                             <i class="fa fa-pen"></i>
-                            <input type="file" name="image" accept=".png, .jpg, .jpeg">
+                            <input type="file" name="image" accept=".png, .jpg, .jpeg, .webp">
                         </label>
                         <span class="kt-avatar__cancel" data-toggle="kt-tooltip" title="" data-original-title="Cancel image">
 							<i class="fa fa-times"></i>

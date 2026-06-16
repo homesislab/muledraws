@@ -77,14 +77,20 @@ class ProfileBusinessModel extends CI_Model
 		if (isset($_FILES['logo'])) {
 			if ($_FILES['logo']['name'] != '') {
 				$config['upload_path'] = './assets/media/uploads/logos';
-				$config['allowed_types'] = 'png|jpg|jpeg';
+				$config['allowed_types'] = 'png|jpg|jpeg|webp';
 				$config['encrypt_name'] = true;
 
 				$this->load->library('upload', $config);
 
 				if ($this->upload->do_upload('logo')) {
 					$image_upload = $this->upload->data();
-					$this->logo = $image_upload['file_name'];
+
+					$this->load->helper('image');
+					$compressed = compressToWebp(
+						'./assets/media/uploads/logos/' . $image_upload['file_name']
+					);
+					$this->logo = $compressed ?: $image_upload['file_name'];
+
 					$this->removeImage($_POST['id']);
 					return true;
 				} else {
