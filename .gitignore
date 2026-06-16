@@ -22,3 +22,5 @@ application/cache/*
 
 # Composer
 composer.lock
+
+assets/media/uploads
