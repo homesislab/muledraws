@@ -2,6 +2,10 @@
 
 class WorkModel extends CI_Model
 {
+	public $error_message = '';
+	public $image = '';
+	public $status = 1;
+
 	public function getWork($limit = '')
 	{
 		$this->db->where('status', 1);
@@ -69,7 +73,9 @@ class WorkModel extends CI_Model
 		$data['description'] = $_POST['description'];
 
 		if ($this->upload(false)) {
-			$data = array_merge(['image' => $this->image], $data);
+			if (isset($this->image)) {
+				$data['image'] = $this->image;
+			}
 			if ($this->db->insert('master_works', $data)) {
 					return true;
 			} else {
@@ -77,7 +83,6 @@ class WorkModel extends CI_Model
 					return false;
 			}
 		} else {
-				$this->error_message = 'Proses Upload Gagal';
 				return false;
 		}
 	}
@@ -91,7 +96,9 @@ class WorkModel extends CI_Model
 		$data['description'] = $_POST['description'];
 
 		if ($this->upload(true)) {
-			$data = array_merge(['image' => $this->image], $data);
+			if (isset($this->image)) {
+				$data['image'] = $this->image;
+			}
 			if ($this->db->update('master_works', $data, ['id' => $work_id])) {
 					return true;
 			} else {
@@ -99,7 +106,6 @@ class WorkModel extends CI_Model
 					return false;
 			}
 		} else {
-				$this->error_message = 'Proses Upload Gagal';
 				return false;
 		}
 	}
@@ -141,7 +147,7 @@ class WorkModel extends CI_Model
 					
 					return true;
 				} else {
-					$this->error_message = $this->upload->display_errors();
+					$this->error_message = $this->upload->display_errors('', '');
 					return false;
 				}
 			} else {
@@ -167,7 +173,13 @@ class WorkModel extends CI_Model
 		$data['name'] = $_POST['name'];
 
 		if ($this->doUploadArtwork()) {
-			$data = array_merge(['image' => $this->image], $data);
+			if (isset($this->image)) {
+				$data['image'] = $this->image;
+			} else {
+				$this->error_message = 'Silahkan pilih gambar.';
+				return false;
+			}
+
 			if ($this->db->insert('master_works_detail', $data)) {
 					return true;
 			} else {
@@ -175,7 +187,6 @@ class WorkModel extends CI_Model
 					return false;
 			}
 		} else {
-				$this->error_message = 'Proses Upload Gagal';
 				return false;
 		}
 	}
@@ -201,14 +212,16 @@ class WorkModel extends CI_Model
 					
 					return true;
 				} else {
-					$this->error_message = $this->upload->display_errors();
+					$this->error_message = $this->upload->display_errors('', '');
 					return false;
 				}
 			} else {
-				return true;
+				$this->error_message = 'Silahkan pilih gambar.';
+				return false;
 			}
 		} else {
-			return true;
+			$this->error_message = 'Silahkan pilih gambar.';
+			return false;
 		}
 	}
 

@@ -3,6 +3,7 @@
 class Work extends CI_Controller
 {
 	public $pagePath;
+	public $routePath;
 	public $breadcrumbs;
 
 	public function __construct()
@@ -190,15 +191,31 @@ class Work extends CI_Controller
 
 	public function uploadArtwork()
 	{
+		$artwork_id = $this->input->post('artwork_id');
 		if ($this->model->uploadArtwork()) {
-			redirectSuccess('Data saved successfully.');
+			$this->session->set_flashdata('confirm', true);
+			$this->session->set_flashdata('message_flash', 'Data saved successfully.');
+			redirect('master/works/upload/' . $artwork_id, 'location');
+		} else {
+			$this->session->set_flashdata('error', true);
+			$this->session->set_flashdata('message_flash', $this->model->error_message);
+			redirect('master/works/upload/' . $artwork_id, 'location');
 		}
 	}
 	
 	public function deleteArtwork($id)
 	{
+		$detail = $this->db->get_where('master_works_detail', ['id' => $id])->row();
+		$artwork_id = $detail ? $detail->artwork_id : '';
+
 		if ($this->model->deleteArtwork($id)) {
-			redirectSuccess('Data has been deleted.');
+			$this->session->set_flashdata('confirm', true);
+			$this->session->set_flashdata('message_flash', 'Data has been deleted.');
+			redirect('master/works/upload/' . $artwork_id, 'location');
+		} else {
+			$this->session->set_flashdata('error', true);
+			$this->session->set_flashdata('message_flash', $this->model->error_message);
+			redirect('master/works/upload/' . $artwork_id, 'location');
 		}
 	}
 
