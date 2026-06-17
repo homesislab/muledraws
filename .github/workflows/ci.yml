@@ -1,80 +1,67 @@
-name: CI/CD Pipeline
+name: Muledraws CI
 
 on:
   push:
-    branches: ["master", "main"]
+    branches: [ "master", "main" ]
   pull_request:
-    branches: ["master", "main"]
+    branches: [ "master", "main" ]
 
 jobs:
   build-and-deploy:
     runs-on: self-hosted
+
     steps:
-      - name: Pre-cleanup (Fix permissions)
-        run: |
-          docker run --rm -v $(pwd):/var/www/html -w /var/www/html alpine chown -R $(id -u):$(id -g) . || true
+    - uses: actions/checkout@v4
 
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          clean: false  # Preserve .env and other untracked files on the server
+    - name: Prepare .env from Secrets
+      env:
+        DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}
+        DB_USERNAME: ${{ secrets.DB_USERNAME }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_DATABASE: ${{ secrets.DB_DATABASE }}
+      run: |
+        TARGET_DIR="/home/gie/workspace/muledraws"
+        echo "Preparing .env in $TARGET_DIR"
+        cd $TARGET_DIR || exit 1
 
-      - name: Prepare .env from Secrets
-        env:
-          DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_DATABASE: ${{ secrets.DB_DATABASE }}
-        run: |
-          # Merge secrets into existing .env without overwriting unrelated variables
-          update_env() {
-            local key=$1
-            local value=$2
-            if [ -z "$value" ]; then return; fi
-            if grep -q "^${key}=" .env 2>/dev/null; then
-              sed -i "s|^${key}=.*|${key}=${value}|" .env
-            else
-              echo "${key}=${value}" >> .env
-            fi
-          }
+        # Merge secrets into existing .env without overwriting unrelated variables
+        update_env() {
+          local key=$1
+          local value=$2
+          if [ -z "$value" ]; then return; fi
+          if grep -q "^${key}=" .env 2>/dev/null; then
+            sed -i "s|^${key}=.*|${key}=${value}|" .env
+          else
+            echo "${key}=${value}" >> .env
+          fi
+        }
 
-          # Ensure .env exists (fallback to example or empty)
-          [ -f .env ] || cp .env.example .env 2>/dev/null || touch .env
+        # Ensure .env exists (fallback to example or empty)
+        [ -f .env ] || cp .env.example .env 2>/dev/null || touch .env
 
-          update_env "DB_HOSTNAME" "$DB_HOSTNAME"
-          update_env "DB_USERNAME" "$DB_USERNAME"
-          update_env "DB_PASSWORD" "$DB_PASSWORD"
-          update_env "DB_DATABASE" "$DB_DATABASE"
+        update_env "DB_HOSTNAME" "$DB_HOSTNAME"
+        update_env "DB_USERNAME" "$DB_USERNAME"
+        update_env "DB_PASSWORD" "$DB_PASSWORD"
+        update_env "DB_DATABASE" "$DB_DATABASE"
 
-          # Fix .env permissions so www-data (in container) can read it
-          chmod 644 .env
+        # Fix .env permissions so www-data (in container) can read it
+        chmod 644 .env
 
-
-      - name: Build changed services
-        run: docker compose build app
-
-      - name: Restart changed services
-        run: |
-          docker compose up -d --no-deps --remove-orphans app
-
-      - name: Wait for app to be ready
-        run: |
-          echo "Waiting for app to be healthy..."
-          for i in $(seq 1 30); do
-            if curl -sf http://localhost:8001/ > /dev/null 2>&1; then
-              echo "App is ready!"
-              break
-            fi
-            echo "Attempt $i/30 - app not ready yet, retrying in 3s..."
-            sleep 3
-          done
-          # Final check — fail fast if app never came up
-          curl -sf http://localhost:8001/ || (echo "App failed to start!" && docker compose logs app && exit 1)
-
-      - name: Print container logs (always)
-        if: always()
-        run: docker compose logs --no-color --tail=200
-
-      - name: "Stop containers (Cleanup: ONLY for non-master branches)"
-        if: always() && github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master'
-        run: docker compose down --remove-orphans
+    - name: Deploy to Server
+      run: |
+        TARGET_DIR="/home/gie/workspace/muledraws"
+        echo "Deploying to $TARGET_DIR"
+        
+        # Navigate to target directory
+        cd $TARGET_DIR || exit 1
+        
+        # Pull latest changes from git
+        # Note: Handling both main and master branch conventions
+        git fetch origin main || git fetch origin master
+        git reset --hard origin/main || git reset --hard origin/master
+        
+        # Bring up services and build changes
+        docker compose up -d --build --remove-orphans
+        
+        # Cleanup unused images
+        docker image prune -f
