@@ -46,7 +46,7 @@ jobs:
           update_env "DB_PASSWORD" "$DB_PASSWORD"
           update_env "DB_DATABASE" "$DB_DATABASE"
 
-          chmod 600 .env
+          # chmod 600 .env
 
       - name: Build changed services
         run: docker compose build app
