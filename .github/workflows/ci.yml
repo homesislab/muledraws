@@ -46,7 +46,13 @@ jobs:
           update_env "DB_PASSWORD" "$DB_PASSWORD"
           update_env "DB_DATABASE" "$DB_DATABASE"
 
-           chmod 777 .env
+          # Fix .env permissions so www-data (in container) can read it
+          chmod 644 .env
+
+      - name: Fix writable directories permissions
+        run: |
+          mkdir -p application/cache application/logs assets/media/uploads
+          chmod -R 777 application/cache application/logs assets/media/uploads
 
       - name: Build changed services
         run: docker compose build app

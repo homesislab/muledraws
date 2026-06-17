@@ -52,8 +52,8 @@ function compressToWebp(string $file_path, int $quality = 80, int $max_width = 1
     }
 
     if ($max_height > 0 && $new_h > $max_height) {
-        $new_h = $max_height;
         $new_w = (int) round($new_w * ($max_height / $new_h));
+        $new_h = $max_height;
     }
 
     if ($new_w !== $orig_w || $new_h !== $orig_h) {
