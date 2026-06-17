@@ -507,15 +507,34 @@ body.artwork-detail-page footer {
 }
 
 .artwork-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+    column-count: 4;
+    column-gap: 24px;
     margin-bottom: 60px;
+}
+
+@media (max-width: 991px) {
+    .artwork-gallery {
+        column-count: 3;
+    }
+}
+
+@media (max-width: 767px) {
+    .artwork-gallery {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 575px) {
+    .artwork-gallery {
+        column-count: 1;
+    }
 }
 
 .artwork-gallery-item {
     break-inside: avoid;
     margin-bottom: 24px;
+    display: inline-block;
+    width: 100%;
 }
 
 .artwork-img-wrapper {
