@@ -114,7 +114,7 @@ class WorkModel extends CI_Model
 	{
 		$this->status = 0;
 
-		if ($this->db->update('master_works', $this, ['id' => $id])) {
+		if ($this->db->update('master_works', ['status' => 0], ['id' => $id])) {
 			return true;
 		} else {
 			$this->error_message = 'Proses Penghapusan Data Gagal';
@@ -229,7 +229,7 @@ class WorkModel extends CI_Model
 	{
 		$this->status = 0;
 
-		if ($this->db->update('master_works_detail', $this, ['id' => $id])) {
+		if ($this->db->update('master_works_detail', ['status' => 0], ['id' => $id])) {
 			return true;
 		} else {
 			$this->error_message = 'Proses Penghapusan Data Gagal';
